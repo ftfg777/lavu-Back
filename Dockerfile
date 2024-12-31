@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Gradle 빌드 도구 설치 (필요한 경우)
-RUN apt-get update && apt-get install -y wget \
+RUN apt-get update && apt-get install -y wget unzip \
     && wget https://services.gradle.org/distributions/gradle-7.5-bin.zip \
     && unzip gradle-7.5-bin.zip -d /opt \
     && ln -s /opt/gradle-7.5/bin/gradle /usr/bin/gradle
