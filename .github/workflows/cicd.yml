@@ -16,6 +16,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up Gradle
+        uses: gradle/wrapper-action@v1
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
       - name: Set up Docker
         uses: docker/setup-buildx-action@v2
 
