@@ -22,3 +22,11 @@ logging:
   level:
     org:
       springframework: DEBUG # ?? ?? ?? (??? DEBUG ?? ??)
+
+server:
+  port: 8080
+  ssl:
+    key-store: file:/app/resources/keystore.p12
+    key-store-password: 4613112
+    key-store-type: PKCS12
+    key-alias: springboot

@@ -69,6 +69,6 @@ jobs:
           docker ps -q --filter "name=my-app" | xargs -r docker stop
           docker ps -aq --filter "name=my-app" | xargs -r docker rm
           
-          # 새로운 Docker 컨테이너 실행 (자동 재시작 설정 추가)
-          docker run -d --restart always -p 8080:8080 --name my-app ftfg777/my-app:latest
+          # 새로운 Docker 컨테이너 실행 (keystore.p12 파일을 EC2에서 컨테이너로 매핑)
+          docker run -d --restart always -p 8080:8080 -v /home/ubuntu/keystore.p12:/app/resources/keystore.p12 --name my-app ftfg777/my-app:latest
           EOF
