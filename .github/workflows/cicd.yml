@@ -61,11 +61,14 @@ jobs:
         run: |
           # SSH로 EC2에 접속하여 Docker 명령 실행
           ssh -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
-            # Docker Hub에서 최신 이미지 다운로드
-            docker pull ftfg777/my-app:latest
-            # 기존 컨테이너가 있다면 종료
-            docker ps -q --filter "name=my-app" | xargs -r docker stop
-            docker ps -aq --filter "name=my-app" | xargs -r docker rm
-            # 새로운 Docker 컨테이너 실행
-            docker run -d -p 8080:8080 --name my-app ftfg777/my-app:latest
+            
+          # Docker Hub에서 최신 이미지 다운로드
+          docker pull ftfg777/my-app:latest
+            
+          # 기존 컨테이너가 있다면 종료
+          docker ps -q --filter "name=my-app" | xargs -r docker stop
+          docker ps -aq --filter "name=my-app" | xargs -r docker rm
+          
+          # 새로운 Docker 컨테이너 실행 (자동 재시작 설정 추가)
+          docker run -d --restart always -p 8080:8080 --name my-app ftfg777/my-app:latest
           EOF
